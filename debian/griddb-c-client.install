@@ -13,5 +13,5 @@ client/c/include/gridstore.h                  usr/griddb_c_client-4.3.0/lib
 3rd_party/uuid/uuid/COPYING                   usr/griddb_c_client-4.3.0/3rd_party/uuid
 3rd_party/omaha/COPYING                       usr/griddb_c_client-4.3.0/3rd_party/omaha
 
-DEB-README.md                                 usr/griddb_c_client-4.3.0
+installer/SOURCES/DEB-README.md               usr/griddb_c_client-4.3.0
 client/c/sample/sample1.c                     usr/griddb_c_client-4.3.0/sample
