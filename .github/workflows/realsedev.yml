@@ -1,0 +1,33 @@
+name: Release-dev package
+
+on: create
+
+resource_types:
+- name: open-build-service-resource
+  type: docker-image
+  source:
+      repository: machinerytool/concourse-open-build-service-resource
+      tag: latest
+
+resources:
+- name: osc-resource
+  type: open-build-service-resource
+  source:
+    api: https://api.opensuse.org
+    project: home:dangtrungtin
+    package : patchinfo
+    username: ${GRIDDB_OSC_USER}
+    password: ${GRIDDB_OSC_PASSWD}
+
+jobs:
+  name: modify-package
+  plan:
+  - get: osc-resource
+  - task: build
+    config:
+      run:
+        path: OBS
+        args: [some_work_on_package]
+        directory: osc-resource
+  - put: osc-resource
+    params: { from: "osc-resource", commit: { message: "new release" } }
