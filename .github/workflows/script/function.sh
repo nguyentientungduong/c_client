@@ -1,16 +1,16 @@
 #!/bin/sh
 
-# Declare variable
+# Declare constants for OS Ubuntu, CentOS, openSUSE
 readonly UBUNTU=Ubuntu
 readonly CENTOS=Centos
 readonly OPENSUSE=Opensuse
 
-# Build docker images
+# Build docker images using Dockerfile for Ubuntu, CentOS, openSUSE
 build_docker_image() {
     docker build -t $image_name -f ${{ matrix.docker_file }} .
 }
 
-# Check file exist
+# Check if the file exists with the parameter path passed
 check_file_exist() {
     local file_path=$1
     if [ ! -f "$file_path" ]; then
@@ -28,7 +28,7 @@ get_version() {
     echo $griddb_version
 }
 
-# Build c client
+# Build C Client for CentOS, openSUSE
 build_c_client() {
     local os=$1
     cd c_client
@@ -42,6 +42,7 @@ build_c_client() {
             ;;
         $UBUNTU)
             # No need to build before create Ubuntu package
+            # C Client will auto build in step build package
             ;;
         *)
             echo "Unknown OS"
@@ -50,7 +51,7 @@ build_c_client() {
     esac
 }
 
-# Create rpm and deb package
+# Create rpm for CentOS, openSUSE and deb package for Ubuntu
 build_package() {
     local os=$1
     case $os in
@@ -75,6 +76,7 @@ build_package() {
             ;;
 
         $UBUNTU)
+            # Create deb file
             cd c_client
             dpkg-buildpackage -b
             ;;
@@ -92,7 +94,7 @@ build_package() {
     fi
 }
 
-# Install package
+# Install rpm and deb package C Client for Ubuntu, CentOS, OpenSUSE
 install_c_client() {
     local package_path=$1
     check_file_exist "$package_path"
@@ -132,7 +134,8 @@ check_package() {
     esac
 }
 
-# Run sample
+# Run sample C Client to griddb server
+# You can refer to https://github.com/griddb/c_client#execute-a-sample-program-1
 run_sample() {
     cd c_client
     local version=$(get_version)
@@ -147,7 +150,7 @@ run_sample() {
     ./a.out $notification_host $notification_port $cluster_name $username $password
 }
 
-# Uninstall package
+# Uninstall package griddb-c-client
 uninstall_package() {
     local package_name=$1
     local os=$2
@@ -164,7 +167,7 @@ uninstall_package() {
     esac
 }
 
-# Config for griddb server
+# Config password and clustername for griddb server
 config_griddb() {
     local username=$1
     local password=$2
@@ -173,7 +176,7 @@ config_griddb() {
     su -l gsadm -c "sed -i 's/\"clusterName\":\"\"/\"clusterName\":\"$cluster_name\"/g' /var/lib/gridstore/conf/gs_cluster.json"
 }
 
-# Start griddb server
+# Start and run griddb server
 start_griddb() {
     local username=$1
     local password=$2
