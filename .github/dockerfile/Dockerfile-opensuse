@@ -11,13 +11,15 @@ RUN set -eux \
 
 # Install dependency other
 RUN set -eux \
-    && zypper install -y make automake autoconf net-tools python2 rpm-build rsync wget libtool \
+    && zypper install -y make automake autoconf net-tools python2 rpm-build rsync wget libtool gcc gcc-c++ \
     && zypper clean all
 
 # Create softlink gcc g++
 RUn set -eux \
     && ln -sf /usr/bin/g++-4.8 /usr/bin/g++ \
     && ln -sf /usr/bin/gcc-4.8 /usr/bin/gcc
+
+RUN gcc --version && g++ --version
 
 # Install griddb server
 RUN set -eux \
