@@ -18,8 +18,13 @@ Release:        linux
 Group:          Applications/Databases
 Vendor:         Toshiba Digital Solutions Corporation
 License:        Apache-2.0
-Source:         griddb-c-client-%{version}.tar.gz
 URL:            https://github.com/griddb/c_client
+
+%if 0%{?suse_version}
+Source:         griddb-c-client-devel-%{version}.tar.gz
+%else
+Source:         griddb-c-client-%{version}.tar.gz
+%endif
 
 %if 0%{?suse_version}
 BuildRequires: libtool automake autoconf gcc-c++
