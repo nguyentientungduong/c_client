@@ -30,7 +30,7 @@ GridDB is a high performance, high scalability and high reliability database for
 The GridDB C Client provides a C interface for GridDB.
 
 %prep
-%setup -q -n c_client
+%setup -q
 
 %build
 cd client/c
