@@ -1,5 +1,5 @@
 %if 0%{?suse_version}
-%define griddb_name griddb-c-client-devel
+%define griddb_name griddb-c-client
 %else
 %define griddb_name griddb-c-client
 %endif
