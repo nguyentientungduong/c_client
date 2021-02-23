@@ -4,10 +4,10 @@ ENV GRIDDB_VERSION=4.5.2
 
 # Install dependency gcc-4.8.5 g++-4.8.5
 RUN set -eux \
-    && zypper addrepo https://download.opensuse.org/repositories/devel:gcc/openSUSE_Leap_15.1/devel:gcc.repo \
-    && zypper --non-interactive --gpg-auto-import-keys --quiet refresh \
-    && zypper --non-interactive --gpg-auto-import-keys --quiet install --auto-agree-with-licenses gcc48 \
-    && zypper --non-interactive --gpg-auto-import-keys --quiet install --auto-agree-with-licenses gcc48-c++
+    && zypper --non-interactive --quiet addrepo -C https://download.opensuse.org/repositories/devel:gcc/openSUSE_Leap_15.1/devel:gcc.repo \
+    && zypper --gpg-auto-import-keys refresh \
+    && zypper install -y --auto-agree-with-licenses gcc48 \
+    && zypper install -y --auto-agree-with-licenses gcc48-c++
 
 # Install dependency other
 RUN set -eux \
