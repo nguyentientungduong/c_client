@@ -4,7 +4,7 @@
 %define griddb_name griddb-c-client
 %endif
 
-%define griddb_ver 4.6.0
+%define griddb_ver v4.6.0
 %define griddb_instdir /usr/griddb_c_client-%{griddb_ver}
 # do not strip
 %define __spec_install_post /usr/lib/rpm/brp-compress
@@ -21,9 +21,9 @@ License:        Apache-2.0
 URL:            https://github.com/griddb/c_client
 
 %if 0%{?suse_version}
-Source:         griddb-c-client-devel-v%{version}.tar.gz
+Source:         griddb-c-client-devel-%{version}.tar.gz
 %else
-Source:         griddb-c-client-v%{version}.tar.gz
+Source:         griddb-c-client-%{version}.tar.gz
 %endif
 
 %if 0%{?suse_version}
