@@ -37,7 +37,7 @@ override_dh_link:
 	dh_link usr/griddb_c_client-$(C_CLIENT_VER)/lib/libgridstore.so.0.0.0  usr/lib/x86_64-linux-gnu/libgridstore.so
 	dh_link usr/griddb_c_client-$(C_CLIENT_VER)/lib/gridstore.h            usr/include/gridstore.h
 
-binary: install	
+binary: install
 	dh_installdeb
 	dh_gencontrol
 	dh_link
@@ -46,4 +46,4 @@ binary: install
 clean:
 
 .PHONY: clean configure build binary
-  
+
