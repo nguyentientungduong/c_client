@@ -4,7 +4,7 @@
 %define griddb_name griddb-c-client
 %endif
 
-%define griddb_ver 4.5.0
+%define griddb_ver 4.6.0
 %define griddb_instdir /usr/griddb_c_client-%{griddb_ver}
 # do not strip
 %define __spec_install_post /usr/lib/rpm/brp-compress
@@ -74,14 +74,7 @@ install -c -m 644 3rd_party/sha2/README                         %{buildroot}%{gr
 install -c -m 644 3rd_party/yield/yield.txt                     %{buildroot}%{griddb_instdir}/3rd_party/yield
 install -c -m 644 3rd_party/uuid/uuid/COPYING                   %{buildroot}%{griddb_instdir}/3rd_party/uuid
 install -c -m 644 3rd_party/omaha/COPYING                       %{buildroot}%{griddb_instdir}/3rd_party/omaha
-
-%if 0%{?suse_version}
-install -c -m 644 installer/SOURCES/OpenSUSE-README.md          %{buildroot}%{griddb_instdir}
-%endif
-
-%if 0%{?centos_version}
-install -c -m 644 installer/SOURCES/CentOS-README.md            %{buildroot}%{griddb_instdir}
-%endif
+install -c -m 644 README.md                                     %{buildroot}%{griddb_instdir}
 install -c -m 644 client/c/sample/sample1.c                     %{buildroot}%{griddb_instdir}/sample
 
 # Install symbolic links
@@ -128,11 +121,7 @@ ln -sf %{griddb_instdir}/lib/gridstore.h                        %{buildroot}/usr
 %{griddb_instdir}/3rd_party/yield/yield.txt
 %{griddb_instdir}/3rd_party/uuid/COPYING
 %{griddb_instdir}/3rd_party/omaha/COPYING
-%if 0%{?suse_version}
-%{griddb_instdir}/OpenSUSE-README.md
-%else
-%{griddb_instdir}/CentOS-README.md
-%endif
+%{griddb_instdir}/README.md
 %{griddb_instdir}/sample/sample1.c
 /usr/lib64/libgridstore.so
 /usr/lib64/libgridstore.so.0
