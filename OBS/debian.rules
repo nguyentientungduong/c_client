@@ -3,7 +3,7 @@
 %:
 	dh $@
 
-C-CLIENT-VER = "4.6.0"
+C-CLIENT-VER = $(shell dpkg-parsechangelog | egrep '^Version:' | cut -f 2 -d ' ')
 
 configure: clean
 	cd client/c && \
