@@ -3,7 +3,7 @@
 %:
 	dh $@
 
-C-CLIENT-VER = 4.6.0
+C-CLIENT-VER = "4.6.0"
 
 configure: clean
 	cd client/c && \
